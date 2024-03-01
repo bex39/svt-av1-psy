@@ -928,8 +928,8 @@ void process_output_stream_buffer(EncChannel *channel, EncApp *enc_app, int32_t 
             int eta_hours           = eta_r / 3600;
             int eta_minutes         = (eta_r - (eta_hours * 3600)) / 60;
             int eta_seconds         = eta_r - (eta_hours * 3600) - (eta_minutes * 60);
-            double size             = ((double)app_cfg->performance_context.byte_count / 1000000);
-            double estsz            = ((double)app_cfg->performance_context.byte_count * app_cfg->frames_to_be_encoded / (app_cfg->frames_encoded * 1000) / 1000);
+            double size             = ((double)app_cfg->performance_context.byte_count / 1048576);
+            double estsz            = ((double)app_cfg->performance_context.byte_count * app_cfg->frames_to_be_encoded / (app_cfg->frames_encoded * 1024) / 1024);
 
             switch (app_cfg->progress) {
             case 0: break;
@@ -948,7 +948,7 @@ void process_output_stream_buffer(EncChannel *channel, EncApp *enc_app, int32_t 
             case 3:
                 if ((int)app_cfg->frames_to_be_encoded == -1) {
                     fprintf(stderr,
-                            "\rEncoding: \x1b[33m%4d Frames\x1b[0m @ \x1b[32m%.2f\x1b[0m fp%c | \x1b[35m%.2f kb/s\x1b[0m | Time: \x1b[36m%d:%02d:%02d\x1b[0m | Size: \x1b[31m%.2f MB\x1b[0m",
+                            "\rEncoding: %4d Frames @ %.2f fp%c | %.2f kiB/s | Time: %d:%02d:%02d | Size: %.2f MiB",
                             *frame_count,
                             // (int)app_cfg->frames_to_be_encoded,
                             fps >= 1.0 ? fps : fps * 60,
@@ -958,7 +958,7 @@ void process_output_stream_buffer(EncChannel *channel, EncApp *enc_app, int32_t 
                             ete_hours, ete_minutes, ete_seconds, size);
                 } else {
                     fprintf(stderr,
-                            "\rEncoding: \x1b[33m%4d/%d Frames\x1b[0m @ \x1b[32m%.2f\x1b[0m fp%c | \x1b[35m%.2f kb/s\x1b[0m | Time: \x1b[36m%d:%02d:%02d\x1b[0m \x1b[38;5;248m[-%d:%02d:%02d]\x1b[0m | Size: \x1b[31m%.2f MB\x1b[0m \x1b[38;5;248m[%.2f MB]\x1b[0m",
+                            "\rEncoding: %4d/%d Frames @ %.2f fp%c | %.2f kiB/s | Time: %d:%02d:%02d [-%d:%02d:%02d] | Size: %.2f MiB [%.2f MiB]",
                             *frame_count,
                             (int)app_cfg->frames_to_be_encoded,
                             fps >= 1.0 ? fps : fps * 60,
@@ -1058,8 +1058,8 @@ void process_output_stream_buffer(EncChannel *channel, EncApp *enc_app, int32_t 
             int eta_hours           = eta_r / 3600;
             int eta_minutes         = (eta_r - (eta_hours * 3600)) / 60;
             int eta_seconds         = eta_r - (eta_hours * 3600) - (eta_minutes * 60);
-            double size             = ((double)app_cfg->performance_context.byte_count / 1000000);
-            double estsz            = ((double)app_cfg->performance_context.byte_count * app_cfg->frames_to_be_encoded / (app_cfg->frames_encoded * 1000) / 1000);
+            double size             = ((double)app_cfg->performance_context.byte_count / 1048576);
+            double estsz            = ((double)app_cfg->performance_context.byte_count * app_cfg->frames_to_be_encoded / (app_cfg->frames_encoded * 1024) / 1024);
 
             switch (app_cfg->progress) {
             case 0: break;
@@ -1079,7 +1079,7 @@ void process_output_stream_buffer(EncChannel *channel, EncApp *enc_app, int32_t 
             case 3:
                 if ((int)app_cfg->frames_to_be_encoded == -1) {
                     fprintf(stderr,
-                            "\rEncoding: \x1b[33m%4d Frames\x1b[0m @ \x1b[32m%.2f\x1b[0m fp%c | \x1b[35m%.2f kb/s\x1b[0m | Time: \x1b[36m%d:%02d:%02d\x1b[0m | Size: \x1b[31m%.2f MB\x1b[0m",
+                            "\rEncoding: %4d Frames @ %.2f fp%c | %.2f kiB/s | Time: %d:%02d:%02d | Size: %.2f MiB",
                             *frame_count,
                             // (int)app_cfg->frames_to_be_encoded,
                             fps >= 1.0 ? fps : fps * 60,
@@ -1089,7 +1089,7 @@ void process_output_stream_buffer(EncChannel *channel, EncApp *enc_app, int32_t 
                             ete_hours, ete_minutes, ete_seconds, size);
                 } else {
                     fprintf(stderr,
-                            "\rEncoding: \x1b[33m%4d/%d Frames\x1b[0m @ \x1b[32m%.2f\x1b[0m fp%c | \x1b[35m%.2f kb/s\x1b[0m | Time: \x1b[36m%d:%02d:%02d\x1b[0m \x1b[38;5;248m[-%d:%02d:%02d]\x1b[0m | Size: \x1b[31m%.2f MB\x1b[0m \x1b[38;5;248m[%.2f MB]\x1b[0m",
+                            "\rEncoding: %4d/%d Frames @ %.2f fp%c | %.2f kiB/s | Time: %d:%02d:%02d [-%d:%02d:%02d] | Size: %.2f MiB [%.2f MiB]",
                             *frame_count,
                             (int)app_cfg->frames_to_be_encoded,
                             fps >= 1.0 ? fps : fps * 60,
